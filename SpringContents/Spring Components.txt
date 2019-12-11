@@ -1,0 +1,32 @@
+Spring Framework components
+	IoC,DI,AOP
+Bootstrapping spring application
+	Spring-config file loading
+	components of spring-config.xml
+	declaring beans
+	bean initialization using property
+	bean initialization using constructor
+	refering beans within beans
+	different scopes (total-5) singleton is default
+	different autowiring methods
+	Concept of AOP
+	Need of AOP
+	understanding - Advice, Aspect, Jointpoint, pointcut, proxy, target concept
+	lazy-init
+
+MVC
+	Architecture of mvc
+	componenets of spring mvc
+		-- controller--configuration of front controller in web.xml (DispatcherServlet)
+		-- Model class
+		-- Storing data in model
+		-- ModelAndViewClass
+		-- @PathVariable
+		-- @ModelAttribute
+		-- Managing View Resolver
+		-- creating Spring MVC configuration file (dispatcher-servlet.xml)
+			--- component scan tag
+			--- configuration of view resolver in dispatcher-servlet.xml
+			--- resources		
+		-- Spring MVC Crud example
+		

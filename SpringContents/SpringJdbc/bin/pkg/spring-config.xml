@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+    http://www.springframework.org/schema/aop 
+    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd ">
+
+
+
+
+
+
+   <bean id="logging" class="aop.Concern"/>
+   <aop:config>
+      <aop:aspect id="log" ref="logging">
+         <aop:pointcut id="selectAll" 
+         expression="execution(* pkg.Employee.*(..))"/>
+         <aop:before pointcut-ref="selectAll" method="BeforeLogicLog"/>
+         <aop:after pointcut-ref="selectAll" method="AfterLogicLog"/>
+      </aop:aspect>
+   </aop:config>
+   
+   
+   
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<bean id="ds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:XE"/>
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="username" value="system"/>
+		<property name="password" value="syntel123$"/>
+	</bean>
+	
+	<bean id="jtemp" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="ds"/>
+	</bean>
+
+
+	<bean id="bc" class="aop.MyConcern1"/>
+
+
+ 	<bean id="myproxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+ 		<property name="target" ref="employee"/>
+ 		<property name="interceptorNames">
+ 			<list>
+ 				<value>bc</value>
+ 			</list>
+ 		</property>
+ 	</bean>
+ 
+ 
+	<bean id="eaddress" class="pkg.Address">
+		<property name="estreet" value="28"/>
+		<property name="ecity" value="Phoenix"/>
+		<property name="estate" value="AZ"/>
+		<property name="epincode" value="85027"/>
+	</bean>
+	
+	<bean id="employee" class="pkg.Employee" autowire="byName">
+		<property name="eid" value="7001"/>
+		<property name="ename" value="Tom"/>
+		<property name="ephone" value="733030303"/>
+		<property name="esalary" value="50000"/>
+		
+		<property name="epassport">
+			<bean id="pdetails" class="pkg.PassportDetails">
+				<constructor-arg index="0" value="8484844"/>
+				<constructor-arg index="1" value="USA"/>
+				<constructor-arg index="2" type="java.lang.String" value="01-01-2022"/>		
+			</bean>
+		</property>
+	
+		<property name="ehobbies">
+			<list>
+				<value>PPP</value>
+				<value>PVG</value>
+				<value>WSM</value>
+			</list>
+		</property>
+	</bean>
+
+	
+	
+</beans>
+
+
+
+
