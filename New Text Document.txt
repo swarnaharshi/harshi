@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <title>Angular example</title>
+<script src="angular.js"></script>
+    </head>
+    <body>
+        <br>
+        <h1>welcome to angular...</h1>
+       <br>
+        <div ng-app="" ng-init="employees=[{eid:1010,ename:'uday',ecity:'pune',esalary:20000},
+                                              {eid:1011,ename:'nits',ecity:'mumbai',esalary:24000},
+                                              {eid:1012,ename:'yuva',ecity:'cbe',esalary:2070000},
+                                              {eid:1013,ename:'elak',ecity:'madurai',esalary:2078000},
+                                             {eid:1014,ename:'pav',ecity:'chennai',esalary:800}
+                                        ]">
+               <!-- <div style="padding:20;width:100%;height: 20%;background-color: aqua">
+                        Id: <input type="text" ng-model="eid"/>
+                        Name: <input type="text" ng-model="ename"/>
+                        Salary: <input type="number" ng-model="esalary"/>
+                </div> -->
+                <div>                      
+                   Employee Id : {{employees[0].eid }}<br>
+                   Employee Name: {{ employees[0].ename| uppercase }}<br>
+                    Employee Salary: {{ employees[0].esalary }}<br>
+                   Employee Bonus: {{employees[0].esalary*.20}}<br>
+                   Employee Netsalary: {{(employees[0].esalary)+ (employees[0].esalary*.20)}}<br>
+                </div>
+                <input type="text" ng-model="xyz" />
+                <input type="text" ng-model="LMN" />
+                 <br>
+       <div>
+           <table border="3" >
+               <tr>
+                   <th>E I D</th>
+                   <th>e Name</th>
+                   <th>E city</th>
+                   <th>E salary</th>
+                   <th>bonus</th>
+                   <th>total salary</th>
+               </tr>
+              <!-- <tr ng-repeat='employee in employees| orderBy :xyz' >
+                    <tr ng-repeat='employee in employees| limitTo :LMN' > -->
+                            <tr ng-repeat='employee in employees| orderBy :xyz | limitTo:LMN' >
+               <td>{{employee.eid}}</td>
+               <td>{{employee.ename| uppercase }}</td>
+               <td>{{employee.ecity}}</td>
+               <td>{{employee.esalary |currency}}</td>
+               <td>{{employee.esalary * .20|currency}}</td>
+<td>{{employee.esalary + (employee.esalary * .20)|currency}}</td></tr>
+            </table>
+       </div>
+       </div>
+         
+    </body>
+   
+</html>

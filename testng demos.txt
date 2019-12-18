@@ -1,0 +1,209 @@
+TestNG is a testing framework developed in the lines of JUnit and NUnit, however it introduces some new functionalities that make it more powerful and easier to use. TestNG is designed to cover all categories of tests: unit, functional, end-to-end, integration, etc.,
+
+
+Testing is the process of checking the functionality of an application to ensure it works as per requirements. Unit testing comes into picture at the developer level where adequate measures are taken to test every single entity (class or method) to ensure the final product meets the requirements.
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+public class TestEmployeeDetails {
+   EmpBusinessLogic empBusinessLogic = new EmpBusinessLogic();
+   EmployeeDetails employee = new EmployeeDetails();
+
+   @Test
+   public void testCalculateAppriasal() {
+   
+      employee.setName("Rajeev");
+      employee.setAge(25);
+      employee.setMonthlySalary(8000);
+      
+      double appraisal = empBusinessLogic.calculateAppraisal(employee);
+      Assert.assertEquals(500, appraisal, 0.0, "500");
+   }
+
+   // Test to check yearly salary
+   @Test
+   public void testCalculateYearlySalary() {
+   
+      employee.setName("Rajeev");
+      employee.setAge(25);
+      employee.setMonthlySalary(8000);
+      
+      double salary = empBusinessLogic.calculateYearlySalary(employee);
+      Assert.assertEquals(96000, salary, 0.0, "8000");
+   }
+}
+
+--------------------------------------------------
+executing testng test using xml
+
+
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name = "Suite1">
+   <test name = "test1">
+      <classes>
+         <class name = "TestEmployeeDetails"/>
+      </classes>
+   </test>
+</suite>
+
+--------------------------------------------------
+
+Basic annotation
+
+@BeforeSuite
+The annotated method will be run only once before all tests in this suite have run.
+
+@AfterSuite
+The annotated method will be run only once after all tests in this suite have run.
+
+@BeforeClass
+The annotated method will be run only once before the first test method in the current class is invoked.
+
+@AfterClass
+The annotated method will be run only once after all the test methods in the current class have run.
+
+@BeforeTest
+The annotated method will be run before any test method belonging to the classes inside the <test> tag is run.
+
+@AfterTest
+The annotated method will be run after all the test methods belonging to the classes inside the <test> tag have run.
+
+@BeforeGroups
+The list of groups that this configuration method will run before. This method is guaranteed to run shortly before the first test method that belongs to any of these groups is invoked.
+
+@AfterGroups
+The list of groups that this configuration method will run after. This method is guaranteed to run shortly after the last test method that belongs to any of these groups is invoked.
+
+@BeforeMethod
+The annotated method will be run before each test method.
+
+@AfterMethod
+The annotated method will be run after each test method.
+
+@DataProvider
+Marks a method as supplying data for a test method. The annotated method must return an Object[ ][ ], where each Object[ ] can be assigned the parameter list of the test method. The @Test method that wants to receive data from this DataProvider needs to use a dataProvider name equals to the name of this annotation.
+
+@Parameters
+Describes how to pass parameters to a @Test method.
+
+@Test
+Marks a class or a method as a part of the test.
+
+--------------------------------------------------
+
+Annotation execution path
+
+in beforeSuite
+in beforeTest
+in beforeClass
+in beforeMethod
+--------------------inside test case 1
+in afterMethod
+in beforeMethod
+--------------------inside test case 1
+in afterMethod
+in afterClass
+in afterTest
+in afterSuite
+
+--------------------------------------------------
+
+A test suite is a collection of test cases intended to test a behavior or a set of behaviors of software program. In TestNG, we cannot define a suite in testing source code, but it is represented by one XML file, as suite is the feature of execution. It also allows flexible configuration of the tests to be run. A suite can contain one or more tests and is defined by the <suite> tag.
+
+
+--------------------------------------------------
+
+ignoring test case
+
+@Test(enabled = false)
+   public void testPrintMessage() {
+      System.out.println("Inside testPrintMessage()");
+      message = "Manisha";
+      Assert.assertEquals(message, messageUtil.printMessage());
+   }
+
+
+--------------------------------------------------
+
+grouping test cases
+	
+   @Test(groups = { "A", "B" })
+   public void testPrintMessage() {
+      System.out.println("Inside testPrintMessage()");
+      message = ".com";
+      Assert.assertEquals(message, messageUtil.printMessage());
+   }
+--------------------------------------------------
+
+executing group
+
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name = "Suite1">
+   <test name = "test1">
+   
+      <groups>
+         <run>
+            <include name = "functest" />
+         </run>
+      </groups>
+
+      <classes>
+         <class name = "GroupTestExample" />
+      </classes>
+   
+   </test>
+</suite>
+
+
+--------------------------------------------------
+
+Exception test
+
+@Test(expectedExceptions = ArithmeticException.class)
+   public void testPrintMessage() {	
+      System.out.println("Inside testPrintMessage()");     
+      messageUtil.printMessage();     
+   }
+   
+
+--------------------------------------------------
+
+dependency test
+
+ @Test(dependsOnMethods = { "initEnvironmentTest" })
+   public void testSalutationMessage() {
+      System.out.println("Inside testSalutationMessage()");
+      message = "Hi!" + "Manisha";
+      Assert.assertEquals(message, messageUtil.salutationMessage());
+   }
+
+	
+--------------------------------------------------
+
+Parameterization of test
+
+
+   @DataProvider(name = "test1")
+   public static Object[][] primeNumbers() {
+      return new Object[][] {{2, true}, {6, false}, {19, true}, {22, false}, {23, true}};
+   }
+
+
+ @Test(dataProvider = "test1")
+   public void testPrimeNumberChecker(Integer inputNumber, Boolean expectedResult) {
+      System.out.println(inputNumber + " " + expectedResult);
+      Assert.assertEquals(expectedResult, primeNumberChecker.validate(inputNumber));
+   }
+
+
+--------------------------------------------------
+--------------------------------------------------
+--------------------------------------------------
+--------------------------------------------------
+--------------------------------------------------
+--------------------------------------------------

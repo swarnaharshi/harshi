@@ -1,0 +1,733 @@
+
+Environment Setup
+Project Setup
+
+
+
+To install Angular CLI tool
+
+Step 1
+======
+Install Node JS
+
+set path=C:\node-v8.9.4-win-x64;
+
+
+1)  node -v
+
+2)  npm -v 
+
+
+  Global installation
+ ================
+     npm install -g @angular/cli  <enter>  
+
+Local Installation
+==============
+
+      npm install  @angular/cli  <enter> 
+
+
+
+
+set path=C:\node-v8.9.4-win-x64;D:\angular5-cli\node_modules\.bin;
+
+set path=c:\Users\TR02\Desktop\node-v8.9.1-win-x64;D:\angular5-cli\node_modules\.bin;
+
+
+C:\Users\PC5037971>node -v
+v7.10.0
+
+C:\Users\PC5037971>npm -v
+4.2.0
+
+C:\Users\PC5037971>ng -v
+
+-----------------------------------------------
+1.To create a angular project
+
+         ng new <project-name>  <enter>
+
+   Ex.  ng new angular-app-day1 <enter>
+
+2.To run a angular project
+
+    go to your project in command prompt
+
+   c:\.... \angular-app-day1>npm start   <enter>   or ng serve 
+
+
+
+
+
+
+Components
+Modules
+Data Binding
+Event Binding
+Templates
+Pipes
+---------------------
+Directives
+Routing
+Services
+Http Client
+dependency injection
+
+https://stackblitz.com/edit/angular 
+
+Project structure
+
+e2e - end to end test folder. Mainly e2e is used for integration testing and helps ensure the application works fine.
+
+node_modules - The npm package installed is node_modules. You can open the folder and see the packages available.
+
+src - This folder is where we will work on the project using Angular 4.
+
+-------------------------------------------
+
+app folder has the following file structure -
+
+.angular-cli.json - It basically holds the project name, version of cli, etc.
+
+.editorconfig - This is the config file for the editor.
+
+.gitignore - A .gitignore file should be committed into the repository, in order to share the ignore rules with any other users that clone the repository.
+
+karma.conf.js - This is used for unit testing via the protractor. All the information required for the project is provided in karma.conf.js file.
+
+package.json - The package.json file tells which libraries will be installed into node_modules when you run npm install.
+
+
+-----------------------------------------------------------
+
+app
+It contains the files described below. These files are installed by angular-cli by default.
+
+app.module.ts - If you open the file, you will see that the code has reference to different libraries, which are imported. Angular-cli has used these default libraries for the import - angular/core, platform-browser. The names itself explain the usage of the libraries.
+
+
+declarations - In declarations, the reference to the components is stored. The Appcomponent is the default component that is created whenever a new project is initiated. We will learn about creating new components in a different section.
+
+imports - This will have the modules imported as shown above. At present, BrowserModule is part of the imports which is imported from @angular/platform-browser.
+
+providers - This will have reference to the services created. The service will be discussed in a subsequent chapter.
+
+bootstrap - This has reference to the default component created, i.e., AppComponent.
+
+app.component.css - You can write your css structure over here. Right now, we have added the background color to the div as shown below.
+
+
+app.component.spec.ts - These are automatically generated files which contain unit tests for source component.
+
+app.component.ts - The class for the component is defined over here. You can do the processing of the html structure in the .ts file. The processing will include activities such as connecting to the database, interacting with other components, routing, services, etc.
+
+-----------------------------------------------------------------------
+ng g class <class-name>  <enter>
+ng g component <component-name>  <enter>
+ng g service  <service-name>  <eneter>
+ng g pipe <pipe-name>  <eneter>
+ng g  directive <directive-name>  <eneter>
+ng g module <module-name>  <enter>
+ng g module <module-name>   --routing <enter>
+--------------------------------------------------------------------------
+
+Angular Component is responsible for
+
+1.What to display
+2.How to display
+3.Where to display
+4.Where to inject
+
+
+===================================================================================================
+
+Components
+
+
+Components are basically classes that interact with the .html file of the component, which gets displayed on the browser.
+
+
+The file structure has the app component and it consists of the following files -
+
+app.component.css
+
+app.component.html
+
+app.component.spec.ts
+
+app.component.ts
+
+app.module.ts
+
+
+-----
+
+app.module.ts
+
+
+The declarations include the AppComponent variable, which we have already imported. This becomes the parent component.
+
+Now, angular-cli has a command to create your own component. However, the app component which is created by default will always remain the parent and the next components created will form the child components.
+
+--create our own compoents
+
+ng generate component new-cmp
+
+
+===================================================
+
+databinding
+
+import { Component } from '@angular/core';
+@Component({
+   selector: 'app-root',
+   templateUrl: './app.component.html',
+   styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+   title = 'Angular 4 Project!';
+   //array of months.
+   months = ["January", "February", "March", "April",
+            "May", "June", "July", "August", "September",
+            "October", "November", "December"];
+   isavailable = false;
+}
+
+
+<!--The content below is only a placeholder and can be replaced.-->
+<div style = "text-align:center">
+   <h1>
+      Welcome to {{title}}.
+   </h1>
+</div>
+<div> Months :
+   <select>
+      <option *ngFor="let i of months">{{i}}</option>
+   </select>
+</div>
+<br/>
+<div>
+   <span *ngIf = "isavailable; else condition1">Condition is valid.</span>
+   <ng-template #condition1>Condition is invalid</ng-template>
+
+</div>
+
+
+
+------------------------------------------
+--else if condition
+
+
+<!--The content below is only a placeholder and can be replaced.-->
+<div style = "text-align:center">
+   <h1>
+   Welcome to {{title}}.
+   </h1>
+</div>
+<div> Months :
+   <select>
+      <option *ngFor = "let i of months">{{i}}</option>
+   </select>
+</div>
+<br/>
+<div>
+   <span *ngIf = "isavailable; then condition1 else condition2">Condition is valid.</span>
+   <ng-template #condition1>Condition is valid</ng-template>
+   <ng-template #condition2>Condition is invalid</ng-template>
+</div>
+
+
+===============================================================================
+
+databinding---calculator
+
+
+<html>
+  <body>
+    hi angular {{title}}
+    <br>
+    
+    <select>
+      <option *ngFor = 'let mnth of months'>{{mnth}}</option>
+    </select> 
+    
+    <br>
+      <span *ngIf = 'isavailable'>this is available</span>
+    <br>
+    
+    <div>
+        <h1>
+          Calculator
+          <br>
+          <input type='number'  id='firstNumber'  placeholder='First Number' class='form-control' #first>
+          <input type='number'  id='secondNumber'  placeholder='Second Number' class='form-control' #second>
+          <br>
+          <button type='submit' (click) = 'calculate(first.value, second.value)'>Calculate</button>
+        </h1>
+        {{sum}}
+    </div>
+
+    <app-new-cmp></app-new-cmp>
+  </body>
+</html>
+
+--inside .ts
+
+  sum: number;
+  calculate(first: number, second: number) {
+   this.sum = first + +second;
+  }
+
+
+--------------------------------------------
+two way
+
+
+  sum: number=0;
+  first:number=0;
+  second:number=0;
+
+  calculate() {
+   this.sum = +this.first + +this.second;
+  }
+
+
+
+<div style="text-align:center">
+  <h1>Calculator</h1>  
+  <input [(ngModel)]='first' />
+  <input [(ngModel)]='second' />
+  <input type='button' (click)='calculate()' value="Click"/>
+  {{sum}}
+</div>
+
+
+--------------------------------------------
+events
+
+
+
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'mydreamapp';
+
+  months = ['January', 'Feburary', 'March', 'April', 'May',   'June', 'July', 'August', 'September',
+  'October', 'November', 'December'];
+
+  isavailable = true;
+
+  sum: number;
+  calculate(first: number, second: number) {
+   this.sum = +first + +second;
+  }
+
+  myClickFunction(event) { 
+    alert('Button is clicked');
+    console.log(event);
+ }
+}
+
+
+--html
+
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->
+<!-- * * * * * * * to get started with your project! * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+
+<html>
+  <body>
+    hi angular {{title}}
+    <br>
+    
+    <select>
+      <option *ngFor = 'let mnth of months'>{{mnth}}</option>
+    </select> 
+    
+    <br>
+      <span *ngIf = 'isavailable'>this is available</span>
+    <br>
+    
+    <div>
+        <h1>
+          Calculator
+          <br>
+          <input type='number'  id='firstNumber'  placeholder='First Number' class='form-control' #first>
+          <input type='number'  id='secondNumber'  placeholder='Second Number' class='form-control' #second>
+          <br>
+          <button type='submit' (click) = 'calculate(first.value, second.value)'>Calculate</button>
+        </h1>
+        {{sum}}
+
+        <br>
+        <button (click)="myClickFunction($event)">
+            Click Me for message.
+         </button>
+    </div>      
+    <app-new-cmp></app-new-cmp>
+  </body>
+</html>
+
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+
+
+
+<router-outlet></router-outlet>
+
+-----------------------------------------------------------------------------------------
+
+
+on change event of drowdown
+
+
+<div> Months :
+   <select (change) = "changemonths($event)">
+      <option *ngFor = "let i of months">{{i}}</option>
+   </select>
+</div>
+
+=========================================================================
+
+ngswitch
+
+<select>
+      <option *ngFor='let mn of month'>
+      
+      <div ngSwitch="{{mn}}">
+        <div *ngSwitchCase="'+'">Addition of {{num1}} and {{num2}} = {{num1 + num2}}</div>
+        <div *ngSwitchCase="'-'">{{num1 - num2}}</div>
+        <div *ngSwitchCase="'*'">{{num1 * num2}}</div>
+        <div *ngSwitchCase="'SQ'">{{num1 * num1}}</div>
+        <div *ngSwitchDefault>Nothing Found.</div>
+      </div> 
+     
+      </option>
+  </select>
+
+
+=======================================================================================
+
+pipes
+
+
+import { Component } from '@angular/core';
+@Component({
+   selector: 'app-root',
+   templateUrl: './app.component.html',
+   styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+   title = 'Angular 6 Project!';
+   todaydate = new Date();
+   jsonval = {name:'Rox', age:'25', address:{a1:'Mumbai', a2:'Karnataka'}};
+   months = ["Jan", "Feb", "Mar", "April", "May", "Jun",
+            "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+}
+
+
+
+--html
+
+<div style = "width:100%;">
+   <div style = "width:40%;float:left;border:solid 1px black;">
+      <h1>Uppercase Pipe</h1>
+      <b>{{title | uppercase}}</b><br/>
+      <h1>Lowercase Pipe</h1>
+      <b>{{title | lowercase}}</b>
+      <h1>Currency Pipe</h1>
+      <b>{{6589.23 | currency:"USD"}}</b><br/>
+      <b>{{6589.23 | currency:"USD":true}}</b> //Boolean true is used to get the sign of the currency.
+      <h1>Date pipe</h1>
+      <b>{{todaydate | date:'d/M/y'}}</b><br/>
+      <b>{{todaydate | date:'shortTime'}}</b>
+      <h1>Decimal Pipe</h1>
+      <b>{{ 454.78787814 | number: '3.4-4' }}</b> // 3 is for main integer, 4 -4 are for integers to be displayed.
+   </div>
+   <div style = "width:40%;float:left;border:solid 1px black;">
+      <h1>Json Pipe</h1>
+      <b>{{ jsonval | json }}</b>
+      <h1>Percent Pipe</h1>
+      <b>{{00.54565 | percent}}</b>
+      <h1>Slice Pipe</h1>
+      <b>{{months | slice:2:6}}</b> 
+      // here 2 and 6 refers to the start and the end index
+   </div>
+</div>
+
+================================================================================
+custom pipes
+
+--app.sqr.ts
+
+import {Pipe, PipeTransform} from '@angular/core'; 
+@Pipe ({
+   name : 'sqrt'
+})
+export class SqrtPipe implements PipeTransform {
+   transform(val: number): number {
+      return Math.sqrt(val);
+    }
+}
+
+--module.ts
+
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { AppRoutingModule, RoutingComponent } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
+import { ContactusComponent } from './contactus/contactus.component';
+import { SqrtPipe } from './app.sqrt';
+
+@NgModule({
+  declarations: [
+    SqrtPipe,
+    AppComponent,
+    HomeComponent,
+    RoutingComponent,
+    ContactusComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+
+
+---component.html.
+
+<h1>Custom Pipe</h1> 
+<b>Square root of 25 is: {{25 | sqrt}}</b> 
+<br/> 
+<b>Square root of 729 is: {{729 | sqrt}}</b>
+ 
+
+
+=================================================================================
+ng generate component 
+
+Routing
+
+---routing module.ts
+
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { HomeComponent } from './home/home.component'; 
+import { ContactusComponent } from './contactus/contactus.component';
+
+
+const routes: Routes = [
+  {path: 'home', component: HomeComponent},
+   {path: 'contactus', component: ContactusComponent}
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+export const
+RoutingComponent = [HomeComponent, ContactusComponent];
+
+
+
+
+--app.module.ts
+
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { AppRoutingModule, RoutingComponent } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
+import { ContactusComponent } from './contactus/contactus.component';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    RoutingComponent,
+    ContactusComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+
+
+----app.component.html
+
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->
+<!-- * * * * * * * to get started with your project! * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+
+
+<!-- Toolbar -->
+<div>
+      hi angular {{title}}
+    <br>
+    
+    <div>
+        <h1>
+          Calculator
+          <br>
+          <input type='number'  id='firstNumber'  placeholder='First Number' class='form-control' #first>
+          <input type='number'  id='secondNumber'  placeholder='Second Number' class='form-control' #second>
+          <br>
+          <button type='submit' (click) = 'calculate(first.value, second.value)'>Calculate</button>
+        </h1>
+        {{sum}}
+    </div>
+</div>
+
+
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<h1>Angular 7 Routing Demo</h1> 
+<nav> 
+   <a routerLink = "/home">Home</a> 
+   <a routerLink = "/contactus">Contact Us </a> 
+</nav>
+
+<router-outlet></router-outlet>
+
+
+---css
+
+.x
+{
+    background-color: yellow;
+}
+
+a:link, a:visited { 
+    background-color: #848686; 
+    color: white; 
+    padding: 10px 25px; 
+    text-align: center; 
+    text-decoration: none; 
+    display: inline-block; 
+ } 
+ a:hover, a:active {
+    background-color: #BD9696;
+ }
+
+
+======================================================================
+
+service
+
+ng g service myservice
+
+
+---myservice.ts
+
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class MyserviceService {
+
+  constructor() { }
+
+  showTodayDate() {
+    let ndate = new Date();
+    return ndate;
+}
+}
+
+
+---entry of service into app-module
+
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { AppRoutingModule, RoutingComponent } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
+import { ContactusComponent } from './contactus/contactus.component';
+import { SqrtPipe } from './app.sqrt';
+import { MyserviceService } from './myservice.service';
+import { NewCmpComponent } from './new-cmp/new-cmp.component';
+
+@NgModule({
+  declarations: [
+    SqrtPipe,
+    AppComponent,
+    HomeComponent,
+    RoutingComponent,
+    ContactusComponent,
+    NewCmpComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule
+  ],
+  providers: [MyserviceService],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+
+
+
+----use service inside component.ts
+
+import { Component, OnInit } from '@angular/core';
+import { MyserviceService } from './../myservice.service';
+
+@Component({
+  selector: 'app-new-cmp',
+  templateUrl: './new-cmp.component.html',
+  styleUrls: ['./new-cmp.component.css']
+})
+export class NewCmpComponent implements OnInit {
+  newcomponent = 'Entered in new component created';
+  todaydate;
+  constructor(private myservice: MyserviceService) { }
+  ngOnInit() {
+     this.todaydate = this.myservice.showTodayDate(); 
+  }
+}
+
+
+--in html file call service variable
+
+<p>new-cmp works!</p>
+<p> 
+        Today's Date : {{todaydate}} 
+</p>
+
+---------
+
