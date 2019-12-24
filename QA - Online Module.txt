@@ -1,0 +1,16 @@
+PFB path for the updated modules under LMS.
+
+
+QMS Overview:-
+
+https://synteluniversity.skillport.com/skillportfe/main.action?path=summary/CUSTOMER_DEFINED/_scorm12_sppubsynteluniversity_chi_qa_qms_overview
+
+Quality Concepts:-
+
+https://synteluniversity.skillport.com/skillportfe/main.action?path=summary/CUSTOMER_DEFINED/_scorm12_sppubsynteluniversity_chi_qa_quality_concepts
+
+EQUIP:-
+
+https://synteluniversity.skillport.com/skillportfe/main.action?path=summary/CUSTOMER_DEFINED/_scorm12_sppubsynteluniversity_chi_qa_equip
+
+
