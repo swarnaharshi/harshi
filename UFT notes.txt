@@ -1,0 +1,567 @@
+Path : 
+"C:\Program Files\HP\Unified Functional Testing\samples\flight\app\flight4a.exe"
+
+
+Pre-Requisite 
+??Basics understanding of manual testing 
+??Awareness of automation
+??Basic awareness to VB Scripting
+??Basic understanding of test case writing & execution
+
+
+ Coverage 
+Introduction to UFT & history:
+UFT = QTP + Service tool
+	GUI + API Tests
+
+1.0 TP 5.0 aSTRA QUICK TEST
+2002 5.6 qtp
+9.2 	mercury
+9.5 vesion 2008 HP
+11.5 ONWARDS UFT. 2012
+12.XX 2014
+
+uft is Object based test tool
+We can test Web as well as Mobile & Desktop based applications.
+Paid tool licence.
+
+version used 11.50
+--------------------------------
+Comparison with other tool
+comparison OF QTP & UFT
+-----------------------------------------
+Add in manager:
+
+Active x
+Desktop functions
+
+VB
+For scripting
+
+WEB
+html/XML
+Other add in
+1. Java
+2. .Net fOr windows form
+3. .Net fOr web form
+4. SAP For GUI
+5. SAP for Web
+6. Siebel
+7. Delphi
+
+1 APP 	2.APP  	3. APP
+web	activex	Java
+	web	active x
+		web
+------------------------------------------------
+GUI test
+API TEST
+Business test / flow
+-----------------------------------------------
+Views in UFT
+Editor/ Expert view
+Keyword view
+Data table
+Active screen
+--------------------------------------------------
+Scripting mechanism: 
+
+Parent & child 
+Native class of parent(logical name of parent).native class of child(logical name child).operation "value"
+
+Dialog(Login).Winedit(password).setSecure "5a16b03879001dec1edd2a7783318814be180a1b"
+Dialog(Login).Winbutton(Cancel).click
+
+---------------------------------------
+Recording modes & settings
+
+Record mechanism:
+Object-> properties-> Logical name-> Script
+
+Replay mechanism:
+script-> Logical name-> property-> Object
+------------------------------------------
+Recording modes:
+4 recording modes:
+
+Normal mode
+Complicated mouse moves will not be captured.
+
+Analog mode:
+track file captures all x,y cordinates of mouse moves.
+used in applications like : paint, digital signature, CAD, CAM, games,
+
+Low level mode:
+Window("Login").Activate @@ hightlight id_;_852972_;_script infofile_;_ZIP::ssf34.xml_;_
+Window("Login").WinObject("Agent Name:").Click 18,7 @@ hightlight id_;_1442720_;_script infofile_;_ZIP::ssf35.xml_;_
+Window("Login").WinObject("Agent Name:").Type "snehaz" @@ hightlight id_;_1442720_;_script infofile_;_ZIP::ssf36.xml_;_
+Window("Login").WinObject("Agent Name:").Type  micBack  @@ hightlight id_;_1442720_;_script infofile_;_ZIP::ssf37.xml_;_
+Window("Login").WinObject("Password:").Click 39,4 @@ hightlight id_;_1966984_;_script infofile_;_ZIP::ssf38.xml_;_
+Window("Login").WinObject("Password:").Type "mercury" @@ hightlight id_;_1966984_;_script infofile_;_ZIP::ssf41.xml_;_
+Window("Login").WinObject("OK").Click 21,10 @@ hightlight id_;_14287774_;_script infofile_;_ZIP::ssf42.xml_;_
+Window("Flight Reservation").Activate
+
+drop down not captured
+every object native class is winobject
+password not encrypted.
+
+Insight mode:
+Wherever object properties are changing continuously we can go for Insight mode
+-----------------------------------------
+Syncronization:
+	Default timeout : 20 seconds
+	Wait
+	wait 10 (timeout in seconds)
+
+	waitproperty (timeout in miliseconds)
+	window("Flight Reservation").WaitProperty "visible","true",20000
+	Object:Flight Reservation
+	Property: visible	
+	Value:	  true
+
+systemutil.Run"C:\Program Files\HP\Unified Functional Testing\samples\flight\app\flight4a.exe"
+Dialog("Login").WinEdit("Agent Name:").Set "sneha" @@ hightlight id_;_459388_;_script infofile_;_ZIP::ssf1.xml_;_
+Dialog("Login").WinEdit("Password:").SetSecure "57fb3f3189df246e60b9a24475f77c3848fc6a42" @@ hightlight id_;_524836_;_script infofile_;_ZIP::ssf2.xml_;_
+Dialog("Login").WinButton("OK").Click @@ hightlight id_;_590474_;_script infofile_;_ZIP::ssf3.xml_;_
+window("Flight Reservation").WaitProperty "visible","true",20000
+Window("Flight Reservation").Activate @@ hightlight id_;_656018_;_script infofile_;_ZIP::ssf4.xml_;_
+Window("Flight Reservation").WinMenu("Menu").Select "File;Exit"
+	
+	exist
+
+Web  Default timeout : 60 seconds
+	sync
+google.com.sync
+---------------------------------------------------------------------
+Parameterization & types
+
+Data driven testing: 
+
+	Input
+Data table
+systemutil.Run"C:\Program Files\HP\Unified Functional Testing\samples\flight\app\flight4a.exe"
+Dialog("Login").WinEdit("Agent Name:").Set DataTable("Agent", dtGlobalSheet) @@ hightlight id_;_1049744_;_script infofile_;_ZIP::ssf1.xml_;_
+Dialog("Login").WinEdit("Agent Name:").Type  micTab  @@ hightlight id_;_393934_;_script infofile_;_ZIP::ssf3.xml_;_
+Dialog("Login").WinEdit("Password:").Set DataTable("password", dtGlobalSheet) @@ hightlight id_;_393934_;_script infofile_;_ZIP::ssf4.xml_;_
+Dialog("Login").WinButton("OK").Click @@ hightlight id_;_1442838_;_script infofile_;_ZIP::ssf5.xml_;_
+Window("Flight Reservation").Activate @@ hightlight id_;_721428_;_script infofile_;_ZIP::ssf6.xml_;_
+Window("Flight Reservation").WinMenu("Menu").Select "File;Exit"
+
+Random number
+
+from 2 to 14
+only 1 iteration
+
+Environment table
+Built in
+User defined
+Dialog("Login").WinEdit("Password:").Setsecure Environment("Password")
+External file (excel)
+
+	Output
+output value
+Data table
+Window("Flight Reservation").Activate @@ hightlight id_;_3211924_;_script infofile_;_ZIP::ssf1.xml_;_
+Window("Flight Reservation").ActiveX("MaskEdBox").Click 3,6 @@ hightlight id_;_1836188_;_script infofile_;_ZIP::ssf2.xml_;_
+Window("Flight Reservation").ActiveX("MaskEdBox").Type "121219" @@ hightlight id_;_1836188_;_script infofile_;_ZIP::ssf3.xml_;_
+Window("Flight Reservation").WinComboBox("Fly From:").Select "Frankfurt" @@ hightlight id_;_852566_;_script infofile_;_ZIP::ssf4.xml_;_
+Window("Flight Reservation").WinComboBox("Fly To:").Select "Los Angeles" @@ hightlight id_;_2425898_;_script infofile_;_ZIP::ssf5.xml_;_
+Window("Flight Reservation").WinButton("FLIGHT").Click @@ hightlight id_;_1638936_;_script infofile_;_ZIP::ssf6.xml_;_
+Window("Flight Reservation").Dialog("Flights Table").WinList("From").Select "20324   FRA   09:12 AM   LAX   04:23 PM   AA     $112.20" @@ hightlight id_;_787076_;_script infofile_;_ZIP::ssf7.xml_;_
+Window("Flight Reservation").Dialog("Flights Table").WinButton("OK").Click @@ hightlight id_;_721970_;_script infofile_;_ZIP::ssf8.xml_;_
+Window("Flight Reservation").WinEdit("Name:").Set "sneha" @@ hightlight id_;_2426018_;_script infofile_;_ZIP::ssf9.xml_;_
+Window("Flight Reservation").WinRadioButton("First").Set @@ hightlight id_;_2097788_;_script infofile_;_ZIP::ssf10.xml_;_
+Window("Flight Reservation").WinButton("Insert Order").Click @@ hightlight id_;_983624_;_script infofile_;_ZIP::ssf11.xml_;_
+wait 7
+Window("Flight Reservation").WinEdit("Order No:").Output CheckPoint("Order No:") @@ hightlight id_;_21955484_;_script infofile_;_ZIP::ssf11.xml_;_
+Window("Flight Reservation").WinMenu("Menu").Select "File;Fax Order..."
+Window("Flight Reservation").Dialog("Fax Order No. 18").ActiveX("MaskEdBox").Click 5,6 @@ hightlight id_;_2360154_;_script infofile_;_ZIP::ssf12.xml_;_
+Window("Flight Reservation").Dialog("Fax Order No. 18").ActiveX("MaskEdBox").Type "2323232323" @@ hightlight id_;_2360154_;_script infofile_;_ZIP::ssf13.xml_;_
+Window("Flight Reservation").Dialog("Fax Order No. 18").WinButton("Send").Click @@ hightlight id_;_918068_;_script infofile_;_ZIP::ssf14.xml_;_
+Window("Flight Reservation").WinButton("Button").Click @@ hightlight id_;_2294306_;_script infofile_;_ZIP::ssf15.xml_;_
+External file (excel)
+-----------------------------------------------------------
+Regular expression:
+.*
+dynamic 
+4
+only numeric
+abcS12
+regexpi:[0-9,a-z]{4}
+----------------------------------------------------------
+Error handling:
+If else
+ex:
+systemutil.Run"C:\Program Files\HP\Unified Functional Testing\samples\flight\app\flight4a.exe"
+Dialog("Login").WinEdit("Agent Name:").Set DataTable("agent", dtGlobalSheet) @@ hightlight id_;_2949776_;_script infofile_;_ZIP::ssf1.xml_;_
+Dialog("Login").WinEdit("Password:").SetSecure "57fdd6d62c6a854df4f43e4d5d72d66c0e7fe6f8" @@ hightlight id_;_1049202_;_script infofile_;_ZIP::ssf2.xml_;_
+Dialog("Login").WinButton("OK").Click @@ hightlight id_;_1114668_;_script infofile_;_ZIP::ssf3.xml_;_
+If Dialog("Login").Dialog("Flight Reservations").exist Then
+Dialog("Login").Dialog("Flight Reservations").WinButton("OK").Click @@ hightlight id_;_1049740_;_script infofile_;_ZIP::ssf6.xml_;_
+Dialog("Login").WinButton("Cancel").Click @@ hightlight id_;_2491348_;_script infofile_;_ZIP::ssf7.xml_;_
+reporter.ReportEvent micWarning,"verify login","invalid data"
+else
+Window("Flight Reservation").Activate @@ hightlight id_;_1376924_;_script infofile_;_ZIP::ssf4.xml_;_
+Window("Flight Reservation").WinMenu("Menu").Select "File;Exit"
+reporter.ReportEvent micPass,"verify login","valid data"
+End If
+-----------------------------------------------------------------------
+Recovery scenario manager:
+Resources-> recovery scenario manager-> using wizard handle the error.
+-----------------------------------------------------------
+Settings:
+File-> Settings
+VIEW-> (all settings)
+Tools-> options
+Record-> Record & Run settings
+------------------------------------------------------------------
+Object repository & its functions:
+	OR is heart of UFT.
+	When we are recording the script, Without OR scripts will not run.
+	
+Description property
+Visual relational identifier
+Ordinal identifier
+Additional details
+
+functions in OR:
+Add object to local:
+	We will be able to add new object
+Update from application:
+	We will be able to update properties of object
+Add insight object to local:
+	We will be able to add insight object to OR.
+Define new object:
+	We will be able to define new object in OR
+Highlight in application:
+	We will be able to HIGHLIGHT object in Application
+Locate in repository:
+	We will be able to locate object on OR.
+
+-----------------------------------------------
+>>>>>Object spy:
+All the properties of any object, use Object spy.
+-------------------------------------------
+		Types of OR:
+
+--------Local repository:
+>When we are recording any script, Repository created is called Local repository.
+>Editable
+>Non reusable
+>.mtr(mercury test repository)
+
+---------Shared repository:
+>We can create shared repository from Local repository
+>Non editable
+>Reusable
+>.tsr(test shared repository)
+
+-----------------------------------------------------------------------
+Process to create shared repository.
+--- Record the script to get Local repository
+--- Go to Local repository
+--- File option of OR.
+--- Export objects option
+--- Save Shared repository (extention will be .tsr)
+--- Copy the script in new test
+--- Go to resources-> Associate repository option
+--- Give path of Shared Repository
+--- Associate OR with action1-> click ok.
+--------------------------------------------------------------------
+Merge SR
+Compare SR
+
+Resource-> Object repository manager-> tools-> merge/compare tool
+
+1 Login/logout  r2
+2 Open order	r3
+
+----------------------------------------------------------------------
+Actions:
+Login --------	 Reusable
+Open  --------	 Non Reusable
+Insert 	------   Reusable
+Logout	------   Non Reusable
+
+Call to new
+> New blank action
+>No OBJECTS in OR
+
+----call to copy
+>Reusable & non reusable actions
+>Editable
+
+-----call to existing
+>Only Reusable actions
+>Non editable
+
+------------------------------------------------------------------
+Checkpoints:
+
+Standard: verify properties (validation of functions)
+Object	:Insert order
+Property:Enabled
+Value	:True/False
+	While recording
+	After recording from active screen 
+
+Bitmap: for comparison of images
+	While recording
+	After recording from active screen 
+Text area: verify text area(checks text written in selected area)
+	Only While recording
+-------------------------------------------------------------------------
+
+Scripting mechanism:
+
+Parent child hirarchy will be followed.
+
+Dialog("Login").WinEdit("Agent Name:").Set "sneha"
+----------------------------------------------------------------------
+VB:CASE INSENSITIVE
+Declaration of variables & use of variables
+Array
+Simple programs in vb
+Inbuild functions in VB
+
+'Dim a 'explicit declaration
+'a=100
+'msgbox vartype (a) ' 2 for int
+'msgbox typename (a) ' 2 for int
+'a=20.12
+'msgbox vartype (a) '5 for double
+'msgbox typename (a)
+'b="sneha"   ' implicit declared variables
+'msgbox vartype (b) ' 8 for string
+'msgbox typename (b)
+'b=#01/01/2020#
+'msgbox vartype (b)' 7 for date
+'msgbox typename (b)
+'
+'Option explicit
+'Dim ticket, price, total
+'ticket=4
+'price= 100
+'total=ticket*price
+'msgbox (total)   ' 
+
+'Dim a 
+'a=100   initialization of value
+'a= inputbox("enter value for a") ' reading data
+
+'Dim a,b,c
+'a= 100
+'b= 200
+'c= a+b
+'msgbox c ' 300
+
+'Dim a,b,c
+'a= inputbox ("enter value for a")
+'b= inputbox ("enter value for b")
+'msgbox typename (a)'string
+'msgbox typename (b)'string
+'c= cdbl(a)+cdbl(b)
+'msgbox typename (c)'int
+'msgbox (c)
+
+'Dim a,b
+'a=2000: b=300: c=600
+'If a>b Then
+'msgbox ("a is big number")	
+'else
+'msgbox ("b is big number")
+'End If
+
+---------------------------------------------------------------
+Introduction to Descriptive programming:
+
+'DP
+' Declare the variable
+' use variables as objecte
+' Declare properties of variable in script
+' use objects to run test
+' release the memory
+' login scipt
+Dim login, agname, password,ok
+Set login=description.Create
+login.Add "text","Login"
+
+Set agname=description.Create
+agname.Add "Attached Text","Agent Name:"
+
+Set password=description.Create
+password.Add "Attached Text","Password:"
+
+Set ok=description.Create
+ok("text").value="OK"
+
+invokeapplication "C:\Program Files\HP\Unified Functional Testing\samples\flight\app\flight4a.exe"
+Dialog(login).Activate
+Dialog(login).winedit(agname).Set "neharika"
+Dialog(login).winedit(password).Set "mercury"
+Dialog(login).winbutton(ok).Click
+
+Set login= nothing
+Set agname=nothing
+Set password=nothing
+Set ok=nothing
+------------------------------------------------------------
+Introduction to file system operations:
+FSO:File system object
+
+set variable= CreateObject("class value")
+set : vb statement
+variable: any variable we can use
+createObject: built in vb method to create object
+class value: select class value according to use of object
+
+Scripting.FileSystemObject: drives, folders, files,text files etc. (for externam operations)
+Excel.Application 	  : to work with Excel doc. (internal operation)
+word.Application	  : to work with word doc.
+adodb.Connection 	  : database connection
+adodb.recordSet	 	  : recordset
+Dictionary 		  : to work with dictionary object
+QuickTest.Application 	  : to work with QTP Objects.
+-----------------------------------------------------
+Folders:
+Create:
+'Create folder
+'define variables
+'define variable as object
+'use objects
+'release memory
+
+Dim objFSO
+Set objFSO= CreateObject("Scripting.FileSystemObject")
+objFSO.CreateFolder "C:\Users\syntel\Desktop\UFT_Training"
+Set objFSO=Nothing
+
+Delete :
+
+Dim objFSO
+Set objFSO= CreateObject("Scripting.FileSystemObject")
+objFSO.DeleteFolder "C:\Users\syntel\Desktop\UFT_Training"
+Set objFSO=Nothing
+
+copy:
+Dim objFSO
+Set objFSO= CreateObject("Scripting.FileSystemObject")
+'objFSO.CreateFolder "C:\Users\syntel\Desktop\UFT_Training"
+objFSO.CopyFolder "C:\Users\syntel\Desktop\UFT_Training" , "C:\sneha"
+Set objFSO=Nothing
+
+file:
+create:
+
+Dim objFSO
+Set objFSO= CreateObject("Scripting.FileSystemObject")
+objFSO.CreateTextFile "C:\Users\syntel\Desktop\QTP_Demo.txt"
+objFSO.CreateTextFile "C:\Users\syntel\Desktop\QTP_Demo.xls"
+objFSO.CreateTextFile "C:\Users\syntel\Desktop\QTP_Demo.pdf"
+Set objFSO=Nothing
+
+delete
+Dim objFSO
+Set objFSO= CreateObject("Scripting.FileSystemObject")
+objFSO.DeleteFile "C:\Users\syntel\Desktop\QTP_Demo.txt"
+objFSO.DeleteFile "C:\Users\syntel\Desktop\QTP_Demo.xls"
+objFSO.DeleteFile "C:\Users\syntel\Desktop\QTP_Demo.pdf"
+Set objFSO=Nothing
+-----------------------------------------------------------------
+Text file:
+read	1
+write	2
+Append	8
+
+'Read chara by chara
+
+Dim objFSO,objTextStream,mychar
+Set objFSO= CreateObject("Scripting.FileSystemObject")
+set objTextStream= objFSO.OpenTextFile ("C:\Users\syntel\Desktop\Demo.txt")
+Do While objTextStream.AtEndOfStream= False
+mychar= objTextStream.Read(1) ' 1 for reading values 1 character at a time
+msgbox mychar
+loop
+objTextStream.Close
+Set objTextStream = nothing
+Set objFSO=Nothing
+
+
+' line by line:
+Dim objFSO,objTextStream,mychar
+Set objFSO= CreateObject("Scripting.FileSystemObject")
+set objTextStream= objFSO.OpenTextFile ("C:\Users\syntel\Desktop\Demo.txt")
+Do While objTextStream.AtEndOfStream= False
+mychar= objTextStream.ReadLine ' 1 for reading values 1 character at a time
+msgbox mychar
+loop
+objTextStream.Close
+Set objTextStream = nothing
+Set objFSO=Nothing
+
+'all:
+Dim objFSO,objTextStream,mychar
+Set objFSO= CreateObject("Scripting.FileSystemObject")
+set objTextStream= objFSO.OpenTextFile ("C:\Users\syntel\Desktop\Demo.txt")
+Do While objTextStream.AtEndOfStream= False
+mychar= objTextStream.ReadAll ' 1 for reading values 1 character at a time
+print mychar
+loop
+objTextStream.Close
+Set objTextStream = nothing
+Set objFSO=Nothing
+----------------------------------------------------
+Write:
+Dim objFSO,objTextStream,num1,num2,result
+num1=10: num2= 9: result=num1*num2
+Set objFSO = CreateObject("Scripting.FileSystemObject")
+Set objTextStream = objFSO.OpenTextFile("C:\Users\syntel\Desktop\multiply.txt",2) ' 2 to write the content
+objTextStream.WriteLine "Multiplication of num1 & num2 is: " & result
+objTextStream.Close
+Set objTextStream = nothing
+Set objFSO = Nothing
+
+Append:
+Dim objFSO,objTextStream,num1,num2,result
+num1=10: num2= 9: result=num1*num2
+Set objFSO = CreateObject("Scripting.FileSystemObject")
+Set objTextStream = objFSO.OpenTextFile("C:\Users\syntel\Desktop\multiply.txt",8) ' 8 to append the content
+objTextStream.WriteLine "Multiplication of num1 & num2 is: " & result
+objTextStream.Close
+Set objTextStream = nothing
+Set objFSO = Nothing
+
+
+--------------------------------------------
+Excel: class value : Excel.Application
+parameterize login using excel
+Read & write data with Excel
+ex:
+Dim objExcel,objWorkbook,objWorksheet, i, rowcount
+Set objExcel=CreateObject("Excel.Application")
+Set objWorkbook = objExcel.Workbooks.Open("C:\Users\syntel\Desktop\Data.xls")
+Set objWorksheet= objWorkbook.Worksheets(1)
+rowcount=objworksheet.UsedRange.Rows.Count
+for i=2 to rowcount step 1
+systemutil.Run"C:\Program Files\HP\Unified Functional Testing\samples\flight\app\flight4a.exe"
+Dialog("Login").WinEdit("Agent Name:").Set objWorksheet.Cells(i,"A") @@ hightlight id_;_3081768_;_script infofile_;_ZIP::ssf1.xml_;_
+Dialog("Login").WinEdit("Password:").SetSecure objWorksheet.Cells(i,2) @@ hightlight id_;_11338384_;_script infofile_;_ZIP::ssf2.xml_;_
+wait 2
+Dialog("Login").WinButton("OK").Click @@ hightlight id_;_2098344_;_script infofile_;_ZIP::ssf3.xml_;_
+If Window("Flight Reservation").Exist(9) then
+Window("Flight Reservation").Close @@ hightlight id_;_1246686_;_script infofile_;_ZIP::ssf7.xml_;_
+objWorksheet.Cells(i,3)= "login sucessful-Passed"
+else
+objWorksheet.Cells(i,4) = Dialog("Login").Dialog("Flight Reservations").Static("Agent name must be at").GetROProperty("text")
+systemutil.CloseDescendentProcesses
+objWorksheet.Cells(i,3)="Login unsucessful-Failed"
+End If
+Next
+objWorkbook.Save
+objExcel.Quit
+Set objWorksheet = nothing
+Set objWorkbook = nothing
+Set objExcel = nothing
+--------------------------------------------------------
+
+

@@ -1,0 +1,329 @@
+Schedule
+Sr. No	Topic	Duration (In Min)
+1	Day 1: Test Automation, Introduction of  Selenium, Installation and configuration test tool such as Selenium IDE, Firebug, Firepath,  framework	30
+2	Day 1: Basics of Selenium Web Driver, Selenese Commands, Accessing Forms in Webdriver, Locators in selenium.	90
+3	Day1:,Handling Date Time Picker,Dynamic Table,iFrame,Screenshot in Selenium WebDriver	30
+4	Day1: Alert & Popup handling in Selenium, Xpath. Locators  in Selenium: Complete Guide.	30
+5	Day2: Keyboard & Mouse Event using Action Class in Selenium Webdriver	30
+6	Day2,Synchronizarion in Selenium, Upload & Download a File using Selenium Webdriver	30
+7	Day2: Cookie Handling in Selenium, Using Contains, Sibling, Ancestor to Find Element in Selenium	30
+8	Day2: TestNG  Framework to execute multiple test suites	90
+9	Day 3: Cross Browser Testing using Selenium	30
+10	Day3: Page Object Model (POM) & Page Factory in Selenium: Ultimate Guide	60
+11	Day3:  All About Excel in Selenium: POI & JXL	60
+12	Day3: Creating Keyword & Hybrid Frameworks with Selenium	30
+13	Day4:Log4j and LogExpert with Selenium	30
+14	Day4:Using Robot API with Selenium	30
+15	Day4:Desired Capabilities in Selenium	30
+16	Day4: AJAX Calls in Selenium  	30
+17	Day4:Selenium with Maven	30
+18	How to use AutoIT with Selenium	30
+
+-----------------------------------------------------------------
+
+
+date_time picker:
+
+package Demos;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class date_time_picker {
+
+	public static void main(String[] args) {
+		
+		System.setProperty("webdriver.chrome.driver","D:\\chromedriver_win32\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		/*driver.get("https://www.expedia.co.in/");
+		//driver.findElement(By.linkText("Flights")).click();
+		driver.findElement(By.id("hotel-checkin-hp-hotel")).click();
+		driver.findElement(By.xpath("/html/body")).click();
+		*/
+		System.out.println("welcome");
+		//WebDriver driver;
+		//System.setProperty("webdriver.chrome.driver", "D:\\Softwares\\chromedriver_win32\\chromedriver.exe");
+		//driver = new ChromeDriver();
+		driver.get("D://SeleniumCEP//DemoHTML//Home.html");
+		WebElement l=driver.findElement(By.partialLinkText("Registr"));
+
+		String name=l.getText();
+		System.out.println("text"+name);
+		l.click();
+		WebElement u=driver.findElement(By.name("uname"));
+		u.sendKeys("admin");
+		
+		WebElement p=driver.findElement(By.name("pwd"));
+		p.sendKeys("Syntel123$");
+		// Radio buttons
+		WebElement c=driver.findElement(By.id("col-3"));
+		c.click();
+		System.out.println(c.isSelected());
+		String txt=driver.findElement(By.id("col-3")).getText();
+		System.out.println("txt"+txt);
+		
+		WebElement ln=driver.findElement(By.id("lang-2"));
+		ln.click();
+		
+		WebElement ln1=driver.findElement(By.id("lang-3"));
+		ln1.click();
+		
+		Select age = new Select(driver.findElement(By.name("sltAge")));
+		age.selectByIndex(3);
+		
+		//Multiple selection
+		Select loc = new Select(driver.findElement(By.name("sltLoc")));
+		loc.selectByVisibleText("Mumbai");
+		loc.selectByIndex(1);
+			
+		
+		Select gen = new Select(driver.findElement(By.name("sltgen")));
+		gen.selectByValue("F");
+		
+		//Datetimepicker
+		
+		WebElement dateBox=driver.findElement(By.name("bdaytime"));
+		//Fill date as mm/dd/yyyy as 09/25/2013
+
+        dateBox.sendKeys("09252013");
+
+        //Press tab to shift focus to time field
+
+        dateBox.sendKeys(Keys.TAB);
+
+        //Fill time as 02:45 PM
+
+        dateBox.sendKeys("0245PM");
+
+	}	
+	}
+
+--------------------------------------------------
+date time picker calender
+
+package Demos;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class date_time_picker_calendar {
+
+	public static void main(String[] args) throws Exception {
+		
+		/*System.setProperty("webdriver.chrome.driver","D:\\chromedriver_win32\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://www.expedia.co.in/");
+		driver.findElement(By.id("hotel-checkin-hp-hotel")).click();
+		driver.findElement(By.xpath("//*[@id='hotel-checkin-wrapper-hp-hotel']/div/div/div[2]/table/tbody/tr[4]/td[2]/button")).click();
+		*/
+		
+       // static way of working with date picker
+		
+		System.setProperty("webdriver.chrome.driver","D:\\chromedriver_win32\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://www.redbus.in/");
+		Thread.sleep(5000);
+		driver.findElement(By.linkText("ONWARD DATE")).click();
+		driver.findElement(By.xpath("//*[@id='rb-calendar_onward_cal']/table/tbody/tr[6]/td[4]")).click();
+		
+		
+		//dynamic way to work with date picker
+	}	
+	}
+
+=================================================================================
+// date time picker 
+		System.setProperty("webdriver.chrome.driver","D:\\chromedriver_win32\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		 String dateTime ="12/07/2014 2:00 PM";
+	        driver.manage().window().maximize();
+	        driver.get("http://demos.telerik.com/kendo-ui/datetimepicker/index");
+	        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	       //button to open calendar
+	        WebElement selectDate = driver.findElement
+	        		(By.xpath("//span[@aria-controls='datetimepicker_dateview']"));
+	        selectDate.click();
+	    //button to move next in calendar
+	    WebElement nextLink = driver.findElement(By.xpath
+	    		("//div[@id='datetimepicker_dateview']//div[@class='k-header']//a[contains(@class,'k-nav-next')]"));
+	    //button to click in center of calendar header
+	    WebElement midLink = driver.findElement
+	    		(By.xpath("//div[@id='datetimepicker_dateview']//div[@class='k-header']//a[contains(@class,'k-nav-fast')]"));
+	    //button to move previous month in calendar
+	    WebElement previousLink = driver.findElement
+	    		(By.xpath("//div[@id='datetimepicker_dateview']//div[@class='k-header']//a[contains(@class,'k-nav-prev')]")); 
+	        //Split the date time to get only the date part
+	        String date_dd_MM_yyyy[] = (dateTime.split(" ")[0]).split("/");
+	        System.out.println(date_dd_MM_yyyy[0]);
+	        //get the year difference between current year and year to set in calander
+	        int yearDiff = Integer.parseInt(date_dd_MM_yyyy[2])- Calendar.getInstance()
+	        		.get(Calendar.YEAR);
+	        System.out.println(yearDiff);
+	        midLink.click();
+	        if(yearDiff!=0){
+	            //if you have to move next year
+	            if(yearDiff>0){
+	                for(int i=0;i< yearDiff;i++){
+	                    System.out.println("Year Diff->"+i);
+	                    nextLink.click();
+	                }
+	            }
+	            //if you have to move previous year
+	            else if(yearDiff<0){
+	                for(int i=0;i< (yearDiff*(-1));i++){
+	                    System.out.println("Year Diff->"+i);
+	                    previousLink.click();
+	                }
+	            }
+	        }
+	        Thread.sleep(1000);
+	        //Get all months from calendar to select correct one
+	        List<WebElement> list_AllMonthToBook = driver.findElements
+	        		(By.xpath("//div[@id='datetimepicker_dateview']//table//tbody//td[not(contains(@class,'k-other-month'))]"));      
+	        list_AllMonthToBook.get(Integer.parseInt(date_dd_MM_yyyy[1])-1).click();
+	        Thread.sleep(1000);
+	        //get all dates from calendar to select correct one
+	        List<WebElement> list_AllDateToBook = driver.findElements
+	        		(By.xpath("//div[@id='datetimepicker_dateview']//table//tbody//td[not(contains(@class,'k-other-month'))]"));
+	        list_AllDateToBook.get(Integer.parseInt(date_dd_MM_yyyy[0])-1).click();
+	        ///FOR TIME
+	        WebElement selectTime = driver.findElement
+	        		(By.xpath("//span[@aria-controls='datetimepicker_timeview']"));
+	        //click time picker button
+	        selectTime.click();
+	        //get list of times
+	        List<WebElement> allTime = driver.findElements
+	        		(By.xpath("//div[@data-role='popup'][contains(@style,'display: block')]//ul//li[@role='option']"));
+	        dateTime = dateTime.split(" ")[1]+" "+dateTime.split(" ")[2];
+	     //select correct time
+	        for (WebElement webElement : allTime) {
+	            if(webElement.getText().equalsIgnoreCase(dateTime))
+	            {
+	                webElement.click();
+	            }
+	        }
+	    }
+	}
+
+-------------------------------------------------------------
+Alert - pop up handling
+
+package Demos;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+public class alert_popup_handling {
+	@Test
+	public void alert_handle(){
+		System.setProperty("webdriver.chrome.driver","D:\\chromedriver_win32\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://ksrtc.in/oprs-web/guest/ticket/cancel.do");
+		driver.findElement(By.id("searchBtn")).click();
+		
+		//Indirect method
+		/*Alert alert = driver.switchTo().alert();
+		Thread.sleep(4000);
+		alert.accept();*/
+		
+		// Direct method
+		String text= driver.switchTo().alert().getText();
+		System.out.println(text);
+		driver.switchTo().alert().accept();
+		//driver.switchTo().alert().dismiss();
+		String expected_msg= "Please enter Ticket Number";
+		Assert.assertEquals(expected_msg, text);
+		driver.quit();
+	}
+}
+-------------------------------------------
+
+drag & drop:
+package Day2_demos;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class drag_drop_operation_handling {
+
+	public static void main(String[] args) {
+		System.setProperty("webdriver.chrome.driver","D:\\chromedriver_win32\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.manage().deleteAllCookies();
+		driver.manage().timeouts().implicitlyWait(5000,TimeUnit.MILLISECONDS);
+		driver.get("https://jqueryui.com/droppable/");
+		//to switch control from main page to iframe
+		driver.switchTo().frame(0);
+		
+		Actions action = new Actions(driver);
+		// drag & drop
+		action.clickAndHold(driver.findElement(By.xpath("//*[@id='draggable']")))
+		.moveToElement(driver.findElement(By.xpath("//*[@id='droppable']")))
+		.release()
+		.build()
+		.perform();
+				
+	}
+}
+-------------------------------------------
+mouse hover:
+
+package Day2_demos;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class mouse_hover {
+
+	public static void main(String[] args) {
+		System.setProperty("webdriver.chrome.driver","D:\\chromedriver_win32\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.manage().deleteAllCookies();
+		driver.manage().timeouts().implicitlyWait(5000,TimeUnit.MILLISECONDS);
+		driver.get("https://www.spicejet.com/");
+		Actions action = new Actions(driver);
+		//WebElement menu = driver.findElement(By.linkText("ADD-ONS"));
+		//action.moveToElement(menu).build().perform();
+		action.moveToElement(driver.findElement(By.linkText("ADD-ONS"))).build().perform();
+		driver.findElement(By.partialLinkText("Seat")).click();
+		
+		
+		
+		//Assignment for multiple mouse hovers
+		/*System.setProperty("webdriver.chrome.driver","D:\\chromedriver_win32\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.manage().deleteAllCookies();
+		driver.manage().timeouts().implicitlyWait(5000,TimeUnit.MILLISECONDS);
+		driver.get("https://www.spicejet.com/");
+		Actions action = new Actions(driver);
+		action.moveToElement(driver.findElement(By.linkText("MENU"))).build().perform();
+		action.moveToElement(driver.findElement(By.partialLinkText("Travel info"))).build().perform();
+		driver.findElement(By.linkText("FAQ")).click();
+		*/
+	}
+
+}
+-----------------------------------------------------------------
